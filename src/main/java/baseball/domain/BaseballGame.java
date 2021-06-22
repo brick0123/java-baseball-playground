@@ -17,21 +17,12 @@ public class BaseballGame {
 
     public void inputProcess(String input) {
         if (gameStatus == GameStatus.ALL_STRIKE) {
-            if ("1".equals(input)) {
-                setup();
-            }
-            if ("2".equals(input)) {
-                gameStatus = GameStatus.END;
-            }
+            restartOrEnd(input);
             return;
         }
 
-        if (gameStatus != GameStatus.END) {
-            List<Ball> balls = BallUtils.inputToBalls(input);
-            compareAnswer(balls);
-        }
-        message = BaseballGameOutputUtils.resultMessage(result);
-        result.clear();
+        List<Ball> balls = BallUtils.inputToBalls(input);
+        compareBalls(balls);
     }
 
     private void setup() {
@@ -41,13 +32,25 @@ public class BaseballGame {
         gameStatus = GameStatus.PROCESS;
     }
 
-    private void compareAnswer(List<Ball> balls) {
+    private void restartOrEnd(String input) {
+        if ("1".equals(input)) {
+            setup();
+        }
+
+        if ("2".equals(input)) {
+            gameStatus = GameStatus.END;
+        }
+    }
+
+    private void compareBalls(List<Ball> balls) {
         for (Ball ball : balls) {
             result.merge(judge.judge(ball), 1, Integer::sum);
         }
         if (isAllStrike()) {
             gameStatus = GameStatus.ALL_STRIKE;
         }
+        message = BaseballGameOutputUtils.resultMessage(result);
+        result.clear();
     }
 
     private boolean isAllStrike() {

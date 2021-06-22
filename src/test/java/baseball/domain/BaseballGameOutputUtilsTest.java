@@ -17,7 +17,7 @@ class BaseballGameOutputUtilsTest {
         result.put(BallResult.STRIKE, 1);
 
         String message = BaseballGameOutputUtils.resultMessage(result);
-        assertThat(message).isEqualTo("2볼 1스트라이크");
+        assertThat(message).contains("2볼 1스트라이크");
     }
 
     @Test
@@ -31,7 +31,7 @@ class BaseballGameOutputUtilsTest {
 
         String message = BaseballGameOutputUtils.resultMessage(result);
         String message2 = BaseballGameOutputUtils.resultMessage(result2);
-        assertThat(message).isEqualTo("");
-        assertThat(message2).isEqualTo("낫띵");
+        assertThat(message).contains("");
+        assertThat(message2).contains("낫띵");
     }
 }

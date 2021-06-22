@@ -20,11 +20,11 @@ public class BaseballGameOutputUtils {
         }
 
         if (result.containsKey(BallResult.BALL)) {
-            sb.append(result.get(BallResult.BALL)).append("볼");
+            sb.append(result.get(BallResult.BALL)).append("볼").append(" ");
         }
 
         if (result.containsKey(BallResult.STRIKE)) {
-            sb.append(" ").append(result.get(BallResult.STRIKE)).append("스트라이크");
+            sb.append(result.get(BallResult.STRIKE)).append("스트라이크");
         }
 
         sb.append("\n").append(SELECT_MODE);
