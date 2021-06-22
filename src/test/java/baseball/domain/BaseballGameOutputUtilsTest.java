@@ -7,7 +7,7 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class BaseballResultParsingTest {
+class BaseballGameOutputUtilsTest {
 
     @Test
     @DisplayName("볼과 스트라이크 개수에 따른 결과를 출력한다.")
@@ -16,7 +16,7 @@ class BaseballResultParsingTest {
         result.put(BallResult.BALL, 2);
         result.put(BallResult.STRIKE, 1);
 
-        String message = BaseballResultMessageGenerator.resultMessage(result);
+        String message = BaseballGameOutputUtils.resultMessage(result);
         assertThat(message).isEqualTo("2볼 1스트라이크");
     }
 
@@ -29,8 +29,8 @@ class BaseballResultParsingTest {
         Map<BallResult, Integer> result2 = new HashMap<>();
         result2.put(BallResult.NOTHING, 3);
 
-        String message = BaseballResultMessageGenerator.resultMessage(result);
-        String message2 = BaseballResultMessageGenerator.resultMessage(result2);
+        String message = BaseballGameOutputUtils.resultMessage(result);
+        String message2 = BaseballGameOutputUtils.resultMessage(result2);
         assertThat(message).isEqualTo("");
         assertThat(message2).isEqualTo("낫띵");
     }
